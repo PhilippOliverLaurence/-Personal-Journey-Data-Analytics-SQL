@@ -1,25 +1,17 @@
-#Personal-Journey-Data-Analytics: PostgreSQL
+# Personal-Journey-Data-Analytics: PostgreSQL
 
-##This project was part of my boot camp I took in order to:
+# This project was part of my boot camp I took in order to:
+####       firstly get to know the tool kit you need to become a data analyst and
+####       secondly to continue my pursue of a new 'Sherlock Holmes' of Data.
 
-firstly get to know the tool kit you need to become a data analyst and
 
-secondly to continue my pursue of a new 'Sherlock Holmes' of Data.
+# VGChartz is a BI and research company that analysis video game hardware and their sales data.
 
-Instacart is an online grocery shop, which shares his order data.
+## The objective:
+#### - Perform a descriptive analysis of a video game data
+#### - Understanding of how new games might fare in the market
 
-##The objective:
+## Data:
+#### - it tracks the total number of units of games sold (not financial figures) from 1980 to 201
 
-- Explorative Analysis of their customers and their ordering habbits
-
-- Uncover insight for the marketing department
-
-##Data:
-
-- product data ( product name, price, department, ...)
-
-- order data (number of orders, day and time of order, user_id, ...)
-
-- customer (age, income, family status, ...)
-
-Ressource: (https://www.instacart.com/datasets/grocery-shopping-2017)
+### Ressource:  (https://www.vgchartz.com)
