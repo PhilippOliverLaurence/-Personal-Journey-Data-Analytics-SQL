@@ -1,0 +1,57 @@
+#Find the average amount paid by the top 5 customers
+
+SELECT
+AVG(Total_Pay)
+FROM
+(SELECT
+SUM(amount) AS Total_Pay, first_name AS Name, last_name AS Surname,
+city
+FROM payment A
+INNER JOIN customer B ON A.customer_id = B.customer_id
+INNER JOIN address C ON B.address_id = C.address_id
+INNER JOIN city D ON C.city_id = D.city_id
+WHERE city IN ('Aurora','Tokat','Tarsus','Atlixco','Emeishan','Pontianak','Shimoga','Aparecida de Goinia','Zalantun','Taguig')
+GROUP BY city, first_name, last_name
+ORDER BY SUM(amount) DESC
+LIMIT 5) AS average
+
+
+
+#Find out how many of the top 5 customers are based within each country.
+
+SELECT
+COUNT (DISTINCT customer.customer_id) AS all_customer_count, COUNT (DISTINCT top_5_customers.name) AS top_customer_count, country.country
+FROM
+country
+INNER JOIN city ON country.country_id = city.country_id
+INNER JOIN address ON city.city_id = address.city_id
+INNER JOIN customer ON address.address_id = customer.address_id LEFT JOIN
+(SELECT
+SUM(amount) AS Total_Pay, first_name AS Name, last_name AS Surname,
+city,
+country
+FROM payment A
+INNER JOIN customer B ON A.customer_id = B.customer_id INNER JOIN address C ON B.address_id = C.address_id INNER JOIN city D ON C.city_id = D.city_id
+INNER JOIN country E ON D.country_id = E.country_id WHERE city IN
+('Aurora',
+'Tokat',
+'Altixco',
+'Emeishan',
+'Pontianak',
+'Shimoga',
+'Aparecida de Goinia',
+'Zalantun',
+'Taguig',
+'Tarsus')
+GROUP BY
+city,
+country,
+first_name,
+last_name
+ORDER BY SUM(amount) DESC
+LIMIT 5
+) AS top_5_customers
+ON top_5_customers.country = country.country GROUP BY
+country.country,
+top_5_customers.name
+ORDER BY COUNT(top_5_customers.name) DESC LIMIT 10
