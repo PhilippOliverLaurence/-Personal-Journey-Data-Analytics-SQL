@@ -1,0 +1,25 @@
+# In this task we focused on joining tables
+
+## Based on the Cities where most of our customers are located in, we wanted to know the top 5 customers based on the amount the paid.
+SELECT
+SUM(amount) AS Total_Pay, 
+first_name AS Name, 
+last_name AS Surname,
+city,
+country 
+FROM payment A
+INNER JOIN customer B ON A.customer_id = B.customer_id INNER JOIN address C ON B.address_id = C.address_id INNER JOIN city D ON C.city_id = D.city_id
+INNER JOIN country E ON D.country_id = E.country_id WHERE city IN
+('Aurora',
+'Tokat',
+'Altixco',
+'Emeishan', 'Pontianak', 'Shimoga',
+'Aparecida de Goinia', 'Zalantun',
+'Taguig',
+'Tarsus')
+GROUP BY
+city,
+country,
+first_name,
+last_name
+ORDER BY SUM(amount) DESC LIMIT 5
